@@ -6,7 +6,7 @@ OUTDIR=../js
 VERSION="1.5.0"
 DOJODIR="dojo-release-${VERSION}-src"
 
-OUTDIR=$(cd $OUTDIR 2&> /dev/null && pwd || echo "")
+OUTDIR=$(cd "$OUTDIR" &> /dev/null && pwd || echo "")
 
 if [ "$OUTDIR" = "" ]; then
 	echo "Output directory not found"
@@ -32,7 +32,7 @@ if [ ! -d "$OUTDIR/dojo-release-$VERSION" ]; then
 	echo "Building minified dojo-release-$VERSION"
 	cd "$OUTDIR/$DOJODIR/util/buildscripts"
 	./build.sh profile=standard version=$VERSION action=release releaseName=dojo-release-$VERSION "releaseDir=$OUTDIR"
-	cd - > /dev/null
+	cd - &> /dev/null
 fi
 
 echo "Done!"
