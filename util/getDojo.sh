@@ -15,7 +15,16 @@ fi
 
 if [ ! -d "$OUTDIR/$DOJODIR" ]; then
 	echo "Retrieving dojo $VERSION"
-	wget -O - http://download.dojotoolkit.org/release-$VERSION/$DOJODIR.tar.gz | tar -C "$OUTDIR" -xzf -
+
+	if [ -x $(which wget) ]; then
+		wget -O - http://download.dojotoolkit.org/release-$VERSION/$DOJODIR.tar.gz | tar -C "$OUTDIR" -xzf -
+	elif [ -x $(which curl) ]; then
+		curl -o - http://download.dojotoolkit.org/release-$VERSION/$DOJODIR.tar.gz | tar -C "$OUTDIR" -xzf -
+	else
+		echo "No cURL, no wget, no downloads :("
+		exit 1
+	fi
+
 	echo "Dojo extracted to $OUTDIR/$DOJODIR"
 fi
 
