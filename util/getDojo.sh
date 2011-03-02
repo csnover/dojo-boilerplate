@@ -3,7 +3,7 @@
 set -e
 
 OUTDIR=../js
-VERSION="1.5.0"
+VERSION="1.6.0"
 DOJODIR="dojo-release-${VERSION}-src"
 
 OUTDIR=$(cd "$OUTDIR" &> /dev/null && pwd || echo "")
