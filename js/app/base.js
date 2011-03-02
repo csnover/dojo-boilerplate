@@ -1,1 +1,3 @@
-dojo.provide("app.base");
+define(function() {
+  // your code here!
+});
