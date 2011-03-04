@@ -1,18 +1,7 @@
-({
-  appDir: '../src/',
+require({
+  baseUrl: 'js/',
 
-  baseUrl: 'js',
-
-  dir: '../dist/',
-
-  optimize: 'none',
-
-  pragmas: {
-    asynchLoader: true
-  },
-
-  locale: 'en-us',
-
+  // set the paths to our library packages
   packages: [
     {
       name: 'dojo',
@@ -28,9 +17,8 @@
     }
   ],
 
-  modules: [
-    {
-      name: 'app/_base'
-    }
-  ]
-})
+  // set the path for the require plugins—text, i18n, etc.
+  paths: {
+    require: 'requirejs-0.23.0/require'
+  }
+}, ['app/base']);

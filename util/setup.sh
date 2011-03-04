@@ -2,7 +2,7 @@
 
 set -e
 
-OUTDIR=../js
+OUTDIR="src/js"
 VERSION="1.6.0"
 RJSVERSION="0.23.0"
 
