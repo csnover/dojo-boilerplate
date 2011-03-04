@@ -5,8 +5,6 @@
 
   dir: '../dist/',
 
-  optimize: 'none',
-
   pragmas: {
     asynchLoader: true
   },
