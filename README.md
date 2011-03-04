@@ -12,6 +12,15 @@ providing guidance for integrating RequireJS with Dojo 1.6. Unlike dojo-requirej
 be continually updated to reflect current best practices and track new releases of DTK, and we encourage everyone to
 submit issues and pull requests.
 
+How does use these dojo-boilerplates!?
+--------------------------------------
+
+1. Run `util/setup.sh` to automatically download all required dependencies.
+2. Develop your stuff in `src/` until it is amazing.
+3. Run `util/build.sh`, which will create an awesome optimised build in `dist/`.
+4. Upload `dist/` somewhere for millions of people the world over to enjoy.
+5. Hapyness.
+
 Potential issues
 ----------------
 
