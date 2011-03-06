@@ -1,12 +1,11 @@
 dojo-boilerplate
 ================
 
-The Dojo boilerplate is a set of files to get you up and running with the Dojo
-Toolkit (DTK). It illustrates some basic best practices when working with DTK,
-and includes a build system that uses [RequireJS](http://requirejs.org) for
-efficient development and tiny, blazing fast production builds. The goal of
-this repository is to provide an up-to-date tool for JavaScript developers to
-rapidly get up and running with Dojo. We welcome patches and pull requests.
+The Dojo Boilerplate is a set of files to help you rapidly get up and running
+with the Dojo Toolkit (DTK). It illustrates some basic best practices when
+working with DTK, and includes a build system that uses
+[RequireJS](http://requirejs.org) for efficient development and tiny, blazing
+fast production builds.
 
 Huge thanks go out to [neonstalwart](https://github.com/neonstalwart) for his
 original
@@ -61,3 +60,11 @@ Potential issues
   `text!` plugin; this means that strings included by widgets using
   `dojo.cache` will end up being loaded twice. This has been reported upstream
   at [ticket #12383](http://bugs.dojotoolkit.org/ticket/12383).
+
+License
+-------
+
+The Dojo Boilerplate is licensed under the [same
+terms](http://bugs.dojotoolkit.org/browser/dojo/trunk/LICENSE) as DTK. Consult
+the individual projects (see the Useful resources section above) for additional
+licensing information.
