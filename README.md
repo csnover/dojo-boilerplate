@@ -2,8 +2,8 @@ dojo-boilerplate
 ================
 
 The Dojo Boilerplate is a set of files to help you rapidly get up and running
-with the Dojo Toolkit (DTK). It illustrates some basic best practices when
-working with DTK, and includes a build system that uses
+with the Dojo Toolkit. It illustrates some basic best practices when
+working with Dojo, and includes a build system that uses
 [RequireJS](http://requirejs.org) for efficient development and tiny, blazing
 fast production builds.
 
@@ -43,20 +43,20 @@ A brief tour
 Useful resources
 ----------------
 
-* [DTK Reference Guide](http://dojotoolkit.org/reference-guide/)
+* [Dojo Reference Guide](http://dojotoolkit.org/reference-guide/)
 * [RequireJS documentation](http://requirejs.org/docs/api.html)
 
 Potential issues
 ----------------
 
-* Current releases of DTK don’t include an asynchronous loader. We use
+* Current releases of Dojo don’t include an asynchronous loader. We use
   RequireJS as a stand-in until the official loader and build system are
   complete. Current discussions suggest that Dojo will ultimately use bdLoad as
   its loader; however, it does not presently include a build system. Since both
   RequireJS and bdLoad both comply with the CommonJS AMD standard, you will be
   ready to go with no changes to your application’s code when the new official
   loader is ready. Yay standards!
-* DTK currently uses `dojo.cache` for its widget templates instead of the AMD
+* Dojo currently uses `dojo.cache` for its widget templates instead of the AMD
   `text!` plugin; this means that strings included by widgets using
   `dojo.cache` will end up being loaded twice. This has been reported upstream
   at [ticket #12383](http://bugs.dojotoolkit.org/ticket/12383).
@@ -65,6 +65,6 @@ License
 -------
 
 The Dojo Boilerplate is licensed under the [same
-terms](http://bugs.dojotoolkit.org/browser/dojo/trunk/LICENSE) as DTK. Consult
+terms](http://bugs.dojotoolkit.org/browser/dojo/trunk/LICENSE) as the Dojo Toolkit. Consult
 the individual projects (see the Useful resources section above) for additional
 licensing information.
