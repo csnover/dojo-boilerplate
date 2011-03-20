@@ -2,10 +2,10 @@ dojo-boilerplate
 ================
 
 The Dojo Boilerplate is a set of files to help you rapidly get up and running
-with the Dojo Toolkit. It illustrates some basic best practices when
-working with Dojo, and includes a build system that uses
-[RequireJS](http://requirejs.org) for efficient development and tiny, blazing
-fast production builds.
+with the Dojo Toolkit. It illustrates some basic best practices when working
+with Dojo. The master branch uses the standard Dojo build system; if you're
+feeling adventurous, there is also a branch that uses AMD modules and is built
+using [RequireJS](http://requirejs.org).
 
 Huge thanks go out to [neonstalwart](https://github.com/neonstalwart) for his
 original
@@ -31,14 +31,13 @@ A brief tour
 
 * The boilerplate provides the file `src/js/app/base.js` as the starting point
   for your development
-* The `src/index.html` file loads the configuration file located at
-  `src/js/app/_base.js`, which in turn asynchronously loads
-  `src/js/app/base.js`.
+* The `src/index.html` file loads `src/js/app/base.js`; it's up to you to make
+  this file load anything else your app requires.
 * The file `util/build.sh` reads the profile file at `profiles/app.js`, which
-  contains instructions to RequireJS on how to build the files for production.
-  The profile instructs RequireJS to create a single file that includes Dojo,
-  your application's code, and all associated dependencies as specified within
-  your application's code.
+  contains instructions to the Dojo build tool on how to build the files for
+  production. The profile instructs the build tool to create two files: one
+  that includes a built version of the base Dojo files, and one that includes
+  all of your application's code and its dependencies.
 
 Useful resources
 ----------------
@@ -46,25 +45,10 @@ Useful resources
 * [Dojo Reference Guide](http://dojotoolkit.org/reference-guide/)
 * [RequireJS documentation](http://requirejs.org/docs/api.html)
 
-Potential issues
-----------------
-
-* Current releases of Dojo don’t include an asynchronous loader. We use
-  RequireJS as a stand-in until the official loader and build system are
-  complete. Current discussions suggest that Dojo will ultimately use bdLoad as
-  its loader; however, it does not presently include a build system. Since both
-  RequireJS and bdLoad both comply with the CommonJS AMD standard, you will be
-  ready to go with no changes to your application’s code when the new official
-  loader is ready. Yay standards!
-* Dojo currently uses `dojo.cache` for its widget templates instead of the AMD
-  `text!` plugin; this means that strings included by widgets using
-  `dojo.cache` will end up being loaded twice. This has been reported upstream
-  at [ticket #12383](http://bugs.dojotoolkit.org/ticket/12383).
-
 License
 -------
 
 The Dojo Boilerplate is licensed under the [same
-terms](http://bugs.dojotoolkit.org/browser/dojo/trunk/LICENSE) as the Dojo Toolkit. Consult
-the individual projects (see the Useful resources section above) for additional
-licensing information.
+terms](http://bugs.dojotoolkit.org/browser/dojo/trunk/LICENSE) as the Dojo
+Toolkit. Consult the individual projects (see the Useful resources section
+above) for additional licensing information.
