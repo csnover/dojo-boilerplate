@@ -20,25 +20,32 @@ dojo.require("dojo.hash");
  * the parameters associated with the route, if any; and an object containing
  * information about the route that was run.
  *
- * @author rmurphey
+ * Example usage
+ *
+ *    var myRouter = new dbp.Router([
+ *      {
+ *        path : "/foo/:bar",
+ *        handler : function(params) { },
+ *        defaultRoute : true
+ *      }
+ *    ]);
+ *
+ *    myRouter.init();
+ *
  */
 
-dbp.Router = (function(d){
+(function(d){
 
 var routes = [],
     routeCache = {},
-    currentHash,
+    currentPath,
+    connections = [],
+    subscriptions = [],
 
     hasHistoryState = "onpopstate" in window;
 
-return {
-  /**
-   * Initialize the router with routes
-   * @param {Array} routes an array of routes
-   */
-  init : function(routes) {
-    d.subscribe("/dbp/router/go", this, "_go");
-
+dojo.declare('dbp.Router', null, {
+  constructor : function(routes) {
     if (!routes || !routes.length) {
       throw "No routes provided to dbp.Router.";
     }
@@ -55,19 +62,29 @@ return {
     }
 
     if (hasHistoryState) {
-      d.connect(window, "onpopstate", this, function() {
+      connections.push(d.connect(window, "onpopstate", this, function() {
         this._handle(window.location.hash);
-      });
+      }));
     } else {
-      d.subscribe("/dojo/hashchange", this, "_handle");
+      subscriptions.push(d.subscribe("/dojo/hashchange", this, "_handle"));
     }
+  },
+
+  /**
+   *
+   */
+  init : function(routes) {
+    var h = window.location.hash;
+    this._handle(h || this.defaultRoute);
   },
 
   /**
    * Redirect to a path
    * @param {String} path
    */
-  _go : function(path) {
+  go : function(path) {
+    this._handle(path);
+
     if (path.indexOf("#") !== 0) {
       path = "#" + path;
     }
@@ -77,40 +94,32 @@ return {
     } else {
       window.location.hash = path;
     }
-
-    this._handle(path);
   },
 
   /**
-   * When a user navigates to a page, this is the function
-   * that gets called to figure out what to do with the hash.
+   * When the router observes navigation to a new hash, it passes
+   * the hash to this function to be handled.
+   *
+   * @param {String} The hash to which the user navigated
    */
   _handle : function(hash) {
     if (hash === this.currentHash) { return; }
 
-    this.currentHash = hash = hash.replace("#","");
+    var path = hash.replace("#",""),
 
-    var route = this.currentRoute =
-                this._chooseRoute(this._getRouteablePath(hash)) ||
-                this._getDefaultRoute(),
+        route = this._chooseRoute(this._getRouteablePath(path)) ||
+                this.defaultRoute;
 
-        params = this._parseParams(hash);
+        params = this._parseParams(path, route);
+
+    currentPath = path;
 
     route = d.mixin(route, {
       hash : hash,
       params : params
     });
 
-    d.publish("/dbp/router/before", [ route ]);
-    route.callback(params, route);
-    d.publish("/dbp/router/after", [ route ]);
-  },
-
-  /**
-   * This is provided as a function so it can be overridden.
-   */
-  _getDefaultRoute : function() {
-    return this.defaultRoute;
+    route.handler(params, route);
   },
 
   /**
@@ -119,17 +128,26 @@ return {
   _chooseRoute : function(path) {
     var routeablePath;
 
-    if (!this.routeCache[path]) {
+    if (!routeCache[path]) {
       routeablePath = this._getRouteablePath(path);
       d.forEach(routes, function(r) {
-        if (routeablePath.match(r.matcher)) { cache[path] = r; }
+        if (routeablePath.match(r.matcher)) { routeCache[path] = r; }
       });
     }
 
     return routeCache[path];
   },
 
-  registerRoute : function(path, fn, defaultRoute) {
+  /**
+   * Register a route with the router. Generally only used internally,
+   * but exposed for external use as well.
+   *
+   * @param {Regex|String} path The path pattern to which the route applies
+   * @param {Function} fn The handler to use for the route
+   * @param {Boolean} defaultRoute Whether the route should be used as
+   *                    the default route.
+   */
+  _registerRoute : function(path, fn, defaultRoute) {
     var r = {
           path : path,
           handler : fn,
@@ -146,48 +164,61 @@ return {
    * Given a path, which may be a regex or a string, return a regex
    * that can be used to determine whether to use the associated route
    * to process a given path.
+   *
+   * @private
+   * @param {Regex|String} route
+   * @returns Regex for determining whether a path matches the route
+   * @type {Regex}
    */
   _convertPathToMatcher : function(route) {
-
+    // TODO
   },
 
   /**
-   * Given a path to which a user navigated, return an object
-   * containg the parameter name(s) and value(s)
+   * Given a path to which a user navigated, and the route that we've
+   * determined should handle the path, return an object containg the parameter
+   * name(s) and value(s)
+   *
+   * @private
+   * @param {String} path The path to which a user navigated
+   * @param {Route} route The route
+   * @returns A params object containing parameter keynames and values
+   * @type {Object}
    */
-  _parseParams : function(path) {
-    var route = this.currentRoute;
+  _parseParams : function(path, route) {
+    // TODO
   },
 
   /**
-   * Given a hash that may contain a query string:
+   * Given a path that may contain a query string:
    *
-   *    #/foo/bar?baz=1
+   *    /foo/bar?baz=1
    *
-   * Return a string that does not contain the query string
+   * Return a string that does not contain the query string, so we
+   * can use the string for matching to a route.
+   *
+   * @private
+   * @param {String} path
    */
-  _getRouteablePath : function(hash) {
+  _getRouteablePath : function(path) {
     return path.split('?')[0];
   },
 
   /**
    * Given a route, which could be a string or a regex, return
    * the parameter names expected by the route as an array.
+   *
+   * @param {Regex|String} path The path specified for a route
    */
-  _getParamNames : function(route) {
+  _getParamNames : function(path) {
+    // TODO
+  },
 
+  destroy : function() {
+    dojo.forEach(connections, d.disconnect);
+    dojo.forEach(subscriptions, d.unsubscribe);
   }
-};
+});
 
 }(dojo));
 
-/**
- * Example usage
-dbp.router.init([
-  {
-    path : "/foo/:bar", // can be a regex or a string
-    handler : function(params) { },
-    defaultRoute : true
-  }
-]);
-*/
