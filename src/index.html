@@ -6,6 +6,12 @@
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body class="claro">
-  <script data-main="js/app/_base" src="js/requirejs-0.23.0/require.js"></script>
+  <script>
+  djConfig = {
+    modulePaths : { app : "../../app" }
+  };
+  </script>
+  <script src="js/dojo-release-1.6.0-src/dojo/dojo.js"></script>
+  <script>dojo.require('app.base');</script>
 </body>
 </html>

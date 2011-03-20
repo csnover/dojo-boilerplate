@@ -1,8 +1,10 @@
-define(['dojo', 'dijit/Dialog'], function (dojo, Dialog) {
-	dojo.addOnLoad(function () {
-		new Dialog({
-			title: 'Hello World',
-			content: 'Loaded successfully!'
-		}).placeAt(document.body).show();
-	});
+dojo.provide('app.base');
+
+dojo.require('dijit.Dialog');
+
+dojo.addOnLoad(function() {
+  new dijit.Dialog({
+    title: 'Hello World',
+    content: 'Loaded successfully!'
+  }).placeAt(document.body).show();
 });

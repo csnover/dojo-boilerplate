@@ -2,13 +2,11 @@
 
 set -e
 
-OUTDIR="../src/js"
 VERSION="1.6.0"
-RJSVERSION="0.23.0"
 
+THISDIR=$(cd $(dirname $0) && pwd)
+OUTDIR="$THISDIR/../src/js"
 DOJODIR="dojo-release-${VERSION}-src"
-REQUIREJSDIR="requirejs-${RJSVERSION}"
-
 OUTDIR=$(cd "$OUTDIR" &> /dev/null && pwd || echo "")
 
 if [ -x $(which wget) ]; then
@@ -26,18 +24,7 @@ if [ "$OUTDIR" = "" ]; then
 fi
 
 if [ ! -d "$OUTDIR/$DOJODIR" ]; then
-	echo "Retrieving Dojo $VERSION"
+	echo "Fetching Dojo $VERSION"
 	$GET http://download.dojotoolkit.org/release-$VERSION/$DOJODIR.tar.gz | tar -C "$OUTDIR" -xzf -
 	echo "Dojo extracted to $OUTDIR/$DOJODIR"
 fi
-
-if [ ! -d "$OUTDIR/$REQUIREJSDIR" ]; then
-	echo "Retrieving RequireJS $RJSVERSION"
-	$GET http://requirejs.org/docs/release/$RJSVERSION/requirejs-$RJSVERSION.zip > \
-		"$OUTDIR/requirejs-$RJSVERSION.zip" && \
-	unzip "$OUTDIR/requirejs-$RJSVERSION.zip" -d "$OUTDIR" > /dev/null
-	rm "$OUTDIR/requirejs-$RJSVERSION.zip"
-	echo "RequireJS extracted to $OUTDIR/$REQUIREJSDIR"
-fi
-
-echo "Done!"
