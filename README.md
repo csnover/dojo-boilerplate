@@ -4,8 +4,8 @@ dojo-boilerplate
 The Dojo Boilerplate is a set of files to help you rapidly get up and running
 with the Dojo Toolkit. It illustrates some basic best practices when working
 with Dojo. The master branch uses the standard Dojo build system; if you're
-feeling adventurous, there is also a branch that uses AMD modules and is built
-using [RequireJS](http://requirejs.org).
+feeling adventurous, there is also a [branch that uses AMD modules](tree/amd)
+and is built using [RequireJS](http://requirejs.org).
 
 Huge thanks go out to [neonstalwart](https://github.com/neonstalwart) for his
 original
