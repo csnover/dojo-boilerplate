@@ -5,13 +5,14 @@
   <title></title>
   <link rel="stylesheet" href="css/app.css">
 </head>
-<body class="claro">
+<body>
   <script>
-  djConfig = {
-    modulePaths : { app : "../../app" }
-  };
+  var _dbpDev = true;
+  dojoConfig = _dbpDev ? {
+    modulePaths : { app : dev ? "../../app" }
+  } : {};
   </script>
   <script src="js/dojo-release-1.6.0-src/dojo/dojo.js"></script>
-  <script>dojo.require('app.base');</script>
+  <script>dojo.require("app.base");</script>
 </body>
 </html>

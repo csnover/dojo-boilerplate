@@ -5,9 +5,10 @@ set -e
 DOJOVERSION="1.6.0"
 
 THISDIR=$(cd $(dirname $0) && pwd)
-UTILDIR="$THISDIR/../src/js/dojo-release-${DOJOVERSION}-src/util/buildscripts"
+SRCDIR="$THISDIR/../src"
+UTILDIR="$SRCDIR/js/dojo-release-${DOJOVERSION}-src/util/buildscripts"
 PROFILE="$THISDIR/../profiles/app.js"
-CSSDIR="$THISDIR/../src/css"
+CSSDIR="$SRCDIR/css"
 DISTDIR="$THISDIR/../dist"
 
 if [ ! -d "$UTILDIR" ]; then
@@ -20,7 +21,7 @@ if [ ! -f "$PROFILE" ]; then
   exit 1
 fi
 
-echo "Building with $PROFILE"
+echo "Using $PROFILE. CSS will be copied and JS will be built."
 
 # clean the old distribution files
 rm -rf "$DISTDIR"
@@ -33,3 +34,7 @@ cd "$THISDIR"
 # copy the css files
 # todo: how to do this better?
 cp -r "$CSSDIR" "$DISTDIR/css"
+
+# copy the index.html and make it production-friendly
+cp "$SRCDIR/index.html" "$DISTDIR/index.html"
+sed -i -e "s/var _dbpDev = true;//" "$DISTDIR/index.html"
