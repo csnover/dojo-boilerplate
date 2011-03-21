@@ -5,7 +5,7 @@ set -e
 DOJOVERSION="1.6.0"
 
 THISDIR=$(cd $(dirname $0) && pwd)
-SRCDIR="$THISDIR/../src"
+SRCDIR="$THISDIR/../www"
 UTILDIR="$SRCDIR/js/dojo-release-${DOJOVERSION}-src/util/buildscripts"
 PROFILE="$THISDIR/../profiles/app.js"
 CSSDIR="$SRCDIR/css"

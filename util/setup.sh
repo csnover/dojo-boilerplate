@@ -5,7 +5,7 @@ set -e
 VERSION="1.6.0"
 
 THISDIR=$(cd $(dirname $0) && pwd)
-OUTDIR="$THISDIR/../src/js"
+OUTDIR="$THISDIR/../www/js"
 DOJODIR="dojo-release-${VERSION}-src"
 OUTDIR=$(cd "$OUTDIR" &> /dev/null && pwd || echo "")
 
