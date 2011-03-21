@@ -70,6 +70,15 @@ dojo.declare('dbp.Router', null, {
       this.defaultRoute = userRoutes[0];
     }
 
+  },
+
+  /**
+   * Initialization method; looks at current hash and handles,
+   * else uses default route to get started
+   */
+  init : function() {
+    this.go(window.location.hash || this.defaultRoute.path);
+
     if (hasHistoryState) {
       connections.push(d.connect(window, "onpopstate", this, function() {
         this._handle(window.location.hash);
@@ -80,18 +89,13 @@ dojo.declare('dbp.Router', null, {
   },
 
   /**
-   * Initialization method; looks at current hash and handles,
-   * else uses default route to get started
-   */
-  init : function() {
-    this._handle(window.location.hash || this.defaultRoute);
-  },
-
-  /**
    * Redirect to a path
    * @param {String} path
    */
   go : function(path) {
+    path = dojo.trim(path);
+    if (!path) { return; }
+
     this._handle(path);
 
     if (path.indexOf("#") !== 0) {
@@ -112,7 +116,8 @@ dojo.declare('dbp.Router', null, {
    * @param {String} The hash to which the user navigated
    */
   _handle : function(hash) {
-    if (hash === this.currentHash) { return; }
+    if (hash === currentPath) { return; }
+    currentPath = hash;
 
     var path = hash.replace("#",""),
 
@@ -120,8 +125,6 @@ dojo.declare('dbp.Router', null, {
                 this.defaultRoute;
 
         params = this._parseParams(path, route);
-
-    currentPath = path;
 
     route = d.mixin(route, {
       hash : hash,
