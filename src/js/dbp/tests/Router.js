@@ -82,22 +82,22 @@ doh.register('dbp.Router', [
     },
     runTest : function() {
       this.router.go('/bar/test-123');
-      expect(testVal).toBe('test-123');
+      doh.is(testVal, 'test-123');
 
-      this.outer.go('/basic');
-      expect(testVal).toBe('basic');
+      this.router.go('/basic');
+      doh.is(testVal, 'basic');
 
       this.router.go('/bar/hello/world');
-      expect(testVal).toBe('helloworld');
+      doh.is(testVal, 'helloworld');
 
       this.router.go('/bar/testing/bim/123');
-      expect(testVal).toBe('testing123');
+      doh.is(testVal, 'testing123');
 
       this.router.go('/splat/1/2/3');
-      expect(testVal).toBe('1/2/3');
+      doh.is(testVal, '1/2/3');
 
       this.router.go('/splat/1/2/3/foo/4/5/6');
-      expect(testVal).toBe('1/2/3:4/5/6');
+      doh.is(testVal, '1/2/3:4/5/6');
     },
     tearDown : function() {
       this.router.destroy();

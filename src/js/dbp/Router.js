@@ -32,6 +32,8 @@ dojo.require("dojo.hash");
  *
  *    myRouter.init();
  *
+ * This router was heavily inspired by Sammy.js, a full-featured router
+ * for jQuery projects. http://sammyjs.org/
  */
 
 (function(d){
@@ -42,23 +44,30 @@ var routes = [],
     connections = [],
     subscriptions = [],
 
+    PATH_REPLACER = "([^\/]+)",
+    PATH_NAME_MATCHER = /:([\w\d]+)/g,
+
     hasHistoryState = "onpopstate" in window;
 
 dojo.declare('dbp.Router', null, {
-  constructor : function(routes) {
-    if (!routes || !routes.length) {
+  constructor : function(userRoutes) {
+    if (!userRoutes || !userRoutes.length) {
       throw "No routes provided to dbp.Router.";
     }
 
-    d.forEach(routes, function(r) {
+    if (routes.length) {
+      console.warn("An instance of dbp.Router already exists. You may want to create another one, but it's unlikely.");
+    }
+
+
+    d.forEach(userRoutes, function(r) {
       this._registerRoute(r.path, r.handler, r.defaultRoute);
     }, this);
 
     // use the first route as the default if one
     // is not marked as the default
     if (!this.defaultRoute) {
-      console.warn("No default route was marked; using first route as default.");
-      this.defaultRoute = routes.length && routes[0];
+      this.defaultRoute = userRoutes[0];
     }
 
     if (hasHistoryState) {
@@ -71,11 +80,11 @@ dojo.declare('dbp.Router', null, {
   },
 
   /**
-   *
+   * Initialization method; looks at current hash and handles,
+   * else uses default route to get started
    */
-  init : function(routes) {
-    var h = window.location.hash;
-    this._handle(h || this.defaultRoute);
+  init : function() {
+    this._handle(window.location.hash || this.defaultRoute);
   },
 
   /**
@@ -171,7 +180,9 @@ dojo.declare('dbp.Router', null, {
    * @type {Regex}
    */
   _convertPathToMatcher : function(route) {
-    // TODO
+    return d.isString(route) ?
+      new RegExp("^" + route.replace(PATH_NAME_MATCHER, PATH_REPLACER) + "$") :
+      route;
   },
 
   /**
@@ -180,13 +191,41 @@ dojo.declare('dbp.Router', null, {
    * name(s) and value(s)
    *
    * @private
-   * @param {String} path The path to which a user navigated
+   * @param {String} hash The hash to which a user navigated
    * @param {Route} route The route
    * @returns A params object containing parameter keynames and values
    * @type {Object}
    */
-  _parseParams : function(path, route) {
+  _parseParams : function(hash, route) {
     // TODO
+    var parts = hash.split('?'),
+        path = parts[0],
+        query = parts[1],
+        params,
+        pathParams,
+        _decode = decodeURIComponent;
+
+    params = query ? d.mixin({}, d.queryToObject(query)) : {};
+
+    if ((pathParams = route.matcher.exec(this._getRouteablePath(path))) !== null) {
+      // first match is the full path
+      pathParams.shift();
+
+      // for each of the matches
+      d.forEach(pathParams, function(param, i) {
+        // if theres a matching param name
+        if (route.paramNames[i]) {
+          // set the name to the match
+          params[route.paramNames[i]] = _decode(param);
+        } else {
+          // initialize 'splat'
+          if (!params.splat) { params.splat = []; }
+          params.splat.push(_decode(param));
+        }
+      });
+    }
+
+    return params;
   },
 
   /**
@@ -209,14 +248,26 @@ dojo.declare('dbp.Router', null, {
    * the parameter names expected by the route as an array.
    *
    * @param {Regex|String} path The path specified for a route
+   * @returns An array of parameter names
+   * @type Array
    */
   _getParamNames : function(path) {
-    // TODO
+    var pathMatch,
+        paramNames = [];
+
+    PATH_NAME_MATCHER.lastIndex = 0;
+
+    while ((pathMatch = PATH_NAME_MATCHER.exec(path)) !== null) {
+      paramNames.push(pathMatch[1]);
+    }
+
+    return paramNames;
   },
 
   destroy : function() {
     dojo.forEach(connections, d.disconnect);
     dojo.forEach(subscriptions, d.unsubscribe);
+    routes = [];
   }
 });
 
