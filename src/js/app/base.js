@@ -1,14 +1,11 @@
+/**
+ * This file is your application's base JavaScript file;
+ * it is loaded into the page by the dojo.require() call in
+ * index.html. You can write code in this file, use it to
+ * express dependencies on other files, or both.
+ */
 dojo.provide("app.base");
 
-dojo.require("dijit.Dialog");
-
 dojo.addOnLoad(function() {
-  // add a class to set the dijit theme
-  dojo.addClass(document.body, "claro");
 
-  // create a new dialog
-  new dijit.Dialog({
-    title: "Hello World",
-    content: "Loaded successfully!"
-  }).placeAt(document.body).show();
 });
