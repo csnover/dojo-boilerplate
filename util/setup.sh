@@ -2,14 +2,20 @@
 
 set -e
 
-OUTDIR="../src/js"
+PWD=$(pwd)
+UTILDIR="$PWD/$(dirname $0)"
+ROOT=${UTILDIR/\/util/}
+OUTDIR="$ROOT/src/js"
 VERSION="1.6.0"
 RJSVERSION="0.23.0"
 
 DOJODIR="dojo-release-${VERSION}-src"
 REQUIREJSDIR="requirejs-${RJSVERSION}"
 
-OUTDIR=$(cd "$OUTDIR" &> /dev/null && pwd || echo "")
+if [ ! -d "$OUTDIR" ]; then
+    echo "Output directory is missing: $OUTDIR"
+    exit 1
+fi
 
 if [ -x $(which wget) ]; then
 	GET="wget --no-check-certificate -O -"
@@ -17,11 +23,6 @@ elif [ -x $(which curl) ]; then
 	GET="curl -L --insecure -o -"
 else
 	echo "No cURL, no wget, no downloads :("
-	exit 1
-fi
-
-if [ "$OUTDIR" = "" ]; then
-	echo "Output directory not found"
 	exit 1
 fi
 
