@@ -22,6 +22,10 @@ providing guidance for integrating RequireJS with Dojo 1.6.
 4. Upload `dist/` for millions of people the world over to enjoy.
 5. Hapyness.
 
+If you already have a clone of the repo, and just want to create a new
+instance of it, run `make new=/dir/to/create`, and it will copy the files to
+the directory you specify.
+
 If you are on Windows, we have not yet created build scripts to download the
 required files automatically. Pull requests are welcome :)
 
