@@ -9,9 +9,9 @@ OUTDIR="$THISDIR/../www/js"
 DOJODIR="dojo-release-${VERSION}-src"
 OUTDIR=$(cd "$OUTDIR" &> /dev/null && pwd || echo "")
 
-if [ -x $(which wget) ]; then
+if which wget >/dev/null; then
 	GET="wget --no-check-certificate -O -"
-elif [ -x $(which curl) ]; then
+elif which curl >/dev/null; then
 	GET="curl -L --insecure -o -"
 else
 	echo "No cURL, no wget, no downloads :("
