@@ -28,19 +28,16 @@ the directory you specify.
 
 ### Windows Users
 
-If you have [Git for Windows](http://git-scm.com) 
-installed then boot up Git Bash and verify some dependencies. Note on Git Bash 
-`which` returns an empty string on failure where on Linux it returns a message. 
-The correct response is the path to the executable.
+If you have [Git for Windows](http://git-scm.com)
+installed, boot up Git Bash and verify some dependencies by running the
+following commands:
 
-
-    which java 
+    which java
     which curl
 
-
-If both `java` and `curl` are available then cd to your project directory and
-follow the Quick Start. Currently, Git Bash doesn't ship with `make` so the
-running the MakeFile won't work.
+If both `java` and `curl` are available then `cd` to your project directory and
+follow the Quick Start instructions above. Currently, Git Bash doesn't ship
+with `make`, so running the MakeFile won't work from Git Bash.
 
 
 ## A brief tour
