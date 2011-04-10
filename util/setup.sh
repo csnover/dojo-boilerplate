@@ -2,7 +2,8 @@
 
 set -e
 
-OUTDIR="../src/js"
+UTILDIR=$(cd $(dirname $0) && pwd)
+OUTDIR="${UTILDIR}/../src/js"
 VERSION="1.6.0"
 RJSVERSION="0.23.0"
 
