@@ -3,7 +3,7 @@
 set -e
 
 UTILDIR=$(cd $(dirname $0) && pwd)
-RJSVERSION="0.23.0"
+RJSVERSION="0.24.0"
 REQUIREJSDIR="${UTILDIR}/../src/js/requirejs-${RJSVERSION}"
 PROFILE="${UTILDIR}/../profiles/app.js"
 
