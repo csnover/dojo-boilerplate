@@ -25,6 +25,11 @@
       lib: '.'
     }
   ],
+  
+  paths: {
+    text : 'requirejs-0.24.0/text',
+    i18n : 'requirejs-0.24.0/i18n',
+  },
 
   modules: [
     {

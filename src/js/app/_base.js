@@ -19,6 +19,7 @@ require({
 
   // set the path for the require plugins—text, i18n, etc.
   paths: {
-    require: 'requirejs-0.23.0/require'
+    text: 'requirejs-0.24.0/text',
+    i18n: 'requirejs-0.24.0/i18n'
   }
 }, ['app/base']);

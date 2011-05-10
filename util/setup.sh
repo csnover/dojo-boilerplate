@@ -5,7 +5,7 @@ set -e
 UTILDIR=$(cd $(dirname $0) && pwd)
 OUTDIR="${UTILDIR}/../src/js"
 VERSION="1.6.0"
-RJSVERSION="0.23.0"
+RJSVERSION="0.24.0"
 
 DOJODIR="dojo-release-${VERSION}-src"
 REQUIREJSDIR="requirejs-${RJSVERSION}"
