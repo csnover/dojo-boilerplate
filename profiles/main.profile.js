@@ -1,5 +1,6 @@
 dependencies = {
     action: 'clean,release',
+    async: true,
     cssOptimize: 'comments',
     mini: true,
     optimize: 'shrinksafe',
@@ -7,7 +8,7 @@ dependencies = {
     stripConsole: 'all',
 
     layers: [
-        { name: '../app/_base.js', resourceName: 'app._base', dependencies: [ 'app._base' ] }
+        { name: '../app/_base.js', resourceName: 'app._base', dependencies: [ 'app._base', 'app.main' ] }
     ],
 
     prefixes: [
@@ -15,5 +16,9 @@ dependencies = {
         [ 'dojox', '../dojox' ],
         [ 'app', '../app' ],
         [ 'dbp', '../dbp' ]
-    ]
+    ],
+
+    staticHasFeatures: {
+        'dojo-sync-loader':0
+    }
 }

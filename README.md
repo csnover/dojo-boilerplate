@@ -2,10 +2,10 @@
 
 The Dojo Boilerplate is a set of files to help you rapidly get up and running
 with the Dojo Toolkit. It illustrates some basic best practices when working
-with Dojo. The master branch uses the soon-to-be-deprecated synchronous Dojo
-loader; there is also a
-[branch that uses AMD modules](https://github.com/rmurphey/dojo-boilerplate/tree/amd1.7),
-which uses the new Dojo 1.7+ loader and build systems.
+with Dojo. This is the branch for the new Dojo 1.7 loader and build systems,
+which use AMD modules; there is also a [branch using the old synchronous
+loader](https://github.com/rmurphey/dojo-boilerplate/tree/master), for use
+with Dojo 1.6.
 
 Huge thanks go out to [neonstalwart](https://github.com/neonstalwart) for his
 original
@@ -29,16 +29,16 @@ some dependencies by running the following commands:
     which java
     which node
 
-If either `java` or `node` are available, you’re ready to go; `cd` to your
-project directory and follow the Quick Start instructions above. If they
-aren't, you'll need to install one of them.
+If at least `java` is available, you’re ready to go; `cd` to your project
+directory and follow the Quick Start instructions above. If Java is missing,
+you will need to install it. Node.js is optional, but will reward you with
+much faster builds.
 
 ## A brief tour
 
 * The starting point of the boilerplate is the file at `src/index.html`. This
-  file is responsible for loading base Dojo, telling Dojo where to look for
-  modules in the `app` and `dbp` namespaces, and finally loading your
-  application's base JavaScript file.
+  file is responsible for loading the Dojo loader and the application's base
+  JavaScript file.
 * The file `src/js/app/_base.js` is your application's base JavaScript file. In
   it, you can specify dependencies on other files, including files you create.
   You can also write application code, though the code you write in this
@@ -58,7 +58,7 @@ Useful resources
 
 * [Dojo Reference Guide](http://dojotoolkit.org/reference-guide/)
 * [Introduction to Custom Dojo Widgets](http://www.enterprisedojo.com/2010/09/21/introduction-to-custom-dojo-widgets/)
-* [RequireJS documentation](http://requirejs.org/docs/api.html)
+* [Dojo Campus](http://docs.dojocampus.org/)
 
 License
 -------

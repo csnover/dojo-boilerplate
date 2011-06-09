@@ -1,0 +1,8 @@
+/*
+If you are developing a project that makes use of Dojo’s built-in widgets, you will probably want to include the two
+files below; otherwise, you can remove them. When building for release, Dojo will automatically intern all the import
+at-rules.
+*/
+
+@import '../../dojo/resources/dojo.css';
+@import '../../dijit/themes/claro/claro.css';
