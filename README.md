@@ -2,62 +2,54 @@
 
 The Dojo Boilerplate is a set of files to help you rapidly get up and running
 with the Dojo Toolkit. It illustrates some basic best practices when working
-with Dojo. The master branch uses the standard Dojo build system; if you're
-feeling adventurous, there is also a
-[branch that uses AMD modules](https://github.com/rmurphey/dojo-boilerplate/tree/AMD)
-and is built using [RequireJS](http://requirejs.org).
+with Dojo. The master branch uses the soon-to-be-deprecated synchronous Dojo
+loader; there is also a
+[branch that uses AMD modules](https://github.com/rmurphey/dojo-boilerplate/tree/amd1.7),
+which uses the new Dojo 1.7+ loader and build systems.
 
 Huge thanks go out to [neonstalwart](https://github.com/neonstalwart) for his
 original
 [dojo-requirejs-template](https://github.com/neonstalwart/dojo-requirejs-template)
 project. Though that repository is no longer maintained, it was instrumental in
-providing guidance for integrating RequireJS with Dojo 1.6.
+providing guidance for earlier versions of the AMD branch.
 
 ## Quick Start
 
-0. Clone the repository.
-1. Run `util/setup.sh` to automatically download all required dependencies.
-2. Develop your project in `www/` until it is amazing.
-3. Run `util/build.sh`, which will create an awesome optimised build in `dist/`.
-4. Upload `dist/` for millions of people the world over to enjoy.
-5. Hapyness.
-
-If you already have a clone of the repo, and just want to create a new
-instance of it, run `make new=/dir/to/create`, and it will copy the files to
-the directory you specify.
+0. Clone the repository using `git clone --recursive`.
+1. Develop your project in `src/` until it is amazing.
+2. Run `util/build.sh`, which will create an awesome optimised build in `dist/`.
+3. Upload `dist/` for millions of people the world over to enjoy.
+4. Hapyness.
 
 ### Windows Users
 
-If you have [Git for Windows](http://git-scm.com)
-installed, boot up Git Bash and verify some dependencies by running the
-following commands:
+If you have [msysgit](http://git-scm.com) installed, run Git Bash and verify
+some dependencies by running the following commands:
 
     which java
-    which curl
+    which node
 
-If both `java` and `curl` are available then `cd` to your project directory and
-follow the Quick Start instructions above. Currently, Git Bash doesn't ship
-with `make`, so running the MakeFile won't work from Git Bash.
-
+If either `java` or `node` are available, you’re ready to go; `cd` to your
+project directory and follow the Quick Start instructions above. If they
+aren't, you'll need to install one of them.
 
 ## A brief tour
 
-* The starting point of the boilerplate is the file at `www/index.html`. This
+* The starting point of the boilerplate is the file at `src/index.html`. This
   file is responsible for loading base Dojo, telling Dojo where to look for
   modules in the `app` and `dbp` namespaces, and finally loading your
   application's base JavaScript file.
-* The file `www/js/app/base.js` is your application's base JavaScript file. In
+* The file `src/js/app/_base.js` is your application's base JavaScript file. In
   it, you can specify dependencies on other files, including files you create.
   You can also write application code, though the code you write in this
   particular file should be limited to bootstrapping functionality.
 * The file `util/build.sh` takes your application files and builds them for
   production use using the Dojo build tool. It depends on the presence of the
-  bootstrapping file at `www/js/app/base.js`, and a "profile" file at
-  `profiles/app.js`.
-* The file `www/css/app.css` contains import statements to load the CSS for
+  bootstrapping file at `src/js/app/_base.js`.
+* The file `src/css/app.css` contains import statements to load the CSS for
   Dojo's Claro theme. _If you are not using Dijit widgets, you probably want to
   remove these imports!_
-* The directory `www/js/dbp` contains tools you may find useful. These tools
+* The directory `src/js/dbp` contains tools you may find useful. These tools
   are a work in progress.
 
 

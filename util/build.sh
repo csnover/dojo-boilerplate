@@ -2,34 +2,43 @@
 
 set -e
 
-DOJOVERSION="1.6.0"
-
-THISDIR=$(cd $(dirname $0) && pwd)
-SRCDIR="$THISDIR/../www"
-UTILDIR="$SRCDIR/js/dojo-release-${DOJOVERSION}-src/util/buildscripts"
-PROFILE="$THISDIR/../profiles/app.js"
+UTILDIR=$(cd $(dirname $0) && pwd)
+BASEDIR=$(cd "$UTILDIR/.." && pwd)
+SRCDIR="$BASEDIR/src"
+TOOLSDIR="$SRCDIR/js/util/buildscripts"
+PROFILE="$SRCDIR/js/app/_base.js"
 CSSDIR="$SRCDIR/css"
-DISTDIR="$THISDIR/../dist"
+DISTDIR="$BASEDIR/dist"
 
-if [ ! -d "$UTILDIR" ]; then
-  echo "Can't find Dojo build tools -- did you run ./util/setup.sh?"
-  exit 1
+if [ ! -d "$TOOLSDIR" ]; then
+    echo "Can't find Dojo build tools -- did you initialise submodules? (git submodule update --init --recursive)"
+    exit 1
 fi
 
 if [ ! -f "$PROFILE" ]; then
-  echo "Invalid input profile"
-  exit 1
+    echo "Invalid input profile"
+    exit 1
 fi
 
 echo "Using $PROFILE. CSS will be copied and JS will be built."
 
 # clean the old distribution files
+echo -n "Cleaning old files..."
 rm -rf "$DISTDIR"
+echo " Done"
 
-# i know this sucks, but sane-er ways didn't seem to work ... :(
+cd "$TOOLSDIR"
+
+if which node >/dev/null; then
+    node ../../dojo/dojo.js load=build --check --loader "$PROFILE" "$@"
+elif which java >/dev/null; then
+    java -Xms256m -Xmx256m  -cp ../shrinksafe/js.jar:../closureCompiler/compiler.jar:../shrinksafe/shrinksafe.jar org.mozilla.javascript.tools.shell.Main  ../../dojo/dojo.js baseUrl=../../dojo load=build --check --loader "$PROFILE" "$@"
+else
+    echo "Need node.js or Java to build!"
+    exit 1
+fi
+
 cd "$UTILDIR"
-./build.sh profileFile=../../../../../profiles/app.js releaseDir=../../../../../dist/
-cd "$THISDIR"
 
 # copy the css files
 # todo: how to do this better?
@@ -38,6 +47,4 @@ cp -r "$CSSDIR" "$DISTDIR/css"
 # copy the index.html and make it production-friendly
 cp "$SRCDIR/index.html" "$DISTDIR/index.html"
 
-
-sed -i -e "s/var _dbpDev = true;//" "$DISTDIR/index.html"
-sed -i -e "s/js\/dojo-release-1.6.0-src/js/" "$DISTDIR/index.html"
+echo "Build complete"
