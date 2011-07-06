@@ -2,7 +2,7 @@
 
 set -e
 
-VERSION="1.6.0"
+VERSION="1.6.1"
 
 THISDIR=$(cd $(dirname $0) && pwd)
 OUTDIR="$THISDIR/../www/js"
