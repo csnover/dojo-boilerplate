@@ -2,7 +2,7 @@
 
 set -e
 
-DOJOVERSION="1.6.0"
+DOJOVERSION="1.6.1"
 
 THISDIR=$(cd $(dirname $0) && pwd)
 SRCDIR="$THISDIR/../www"
@@ -40,4 +40,4 @@ cp "$SRCDIR/index.html" "$DISTDIR/index.html"
 
 
 sed -i -e "s/var _dbpDev = true;//" "$DISTDIR/index.html"
-sed -i -e "s/js\/dojo-release-1.6.0-src/js/" "$DISTDIR/index.html"
+sed -i -e "s/js\/dojo-release-1.6.1-src/js/" "$DISTDIR/index.html"
