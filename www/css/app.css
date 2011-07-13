@@ -4,5 +4,5 @@ widgets, you will probably want to include the two files below;
 otherwise, you can remove them.
 */
 
-@import '../js/dojo-release-1.6.0-src/dojo/resources/dojo.css';
-@import '../js/dojo-release-1.6.0-src/dijit/themes/claro/claro.css';
+@import '../js/dojo-release-1.6.1-src/dojo/resources/dojo.css';
+@import '../js/dojo-release-1.6.1-src/dijit/themes/claro/claro.css';
