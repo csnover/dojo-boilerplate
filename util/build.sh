@@ -2,14 +2,21 @@
 
 set -e
 
-DOJOVERSION="1.6.0"
+DOJOVERSION="1.6.1"
 
 THISDIR=$(cd $(dirname $0) && pwd)
 SRCDIR="$THISDIR/../www"
 UTILDIR="$SRCDIR/js/dojo-release-${DOJOVERSION}-src/util/buildscripts"
-PROFILE="$THISDIR/../profiles/app.js"
+PROFILEDIR=$(cd $THISDIR/../profiles/ && pwd)
+PROFILE="${PROFILEDIR}/app.js"
 CSSDIR="$SRCDIR/css"
-DISTDIR="$THISDIR/../dist"
+
+# this ain't pretty, but the dist director needs to be present if we want to use
+# the constant later on (l.37) as the releaseDir param. This gets around the
+# restriction of having to provide lots of ../../ in the path that are 
+# different for different users
+mkdir -p $THISDIR/../dist/
+DISTDIR=$(cd $THISDIR/../dist/ && pwd)
 
 if [ ! -d "$UTILDIR" ]; then
   echo "Can't find Dojo build tools -- did you run ./util/setup.sh?"
@@ -26,9 +33,10 @@ echo "Using $PROFILE. CSS will be copied and JS will be built."
 # clean the old distribution files
 rm -rf "$DISTDIR"
 
-# i know this sucks, but sane-er ways didn't seem to work ... :(
+# This is now cleaned up because we used a different way of creating DISTDIR 
+# at the top
 cd "$UTILDIR"
-./build.sh profileFile=../../../../../profiles/app.js releaseDir=../../../../../dist/
+./build.sh profileFile=$PROFILE releaseDir=$DISTDIR
 cd "$THISDIR"
 
 # copy the css files
@@ -39,5 +47,7 @@ cp -r "$CSSDIR" "$DISTDIR/css"
 cp "$SRCDIR/index.html" "$DISTDIR/index.html"
 
 
-sed -i -e "s/var _dbpDev = true;//" "$DISTDIR/index.html"
-sed -i -e "s/js\/dojo-release-1.6.0-src/js/" "$DISTDIR/index.html"
+sed -i -e "s/var _dbpDev = true;/var _dbpDev = false/" "$DISTDIR/index.html"
+sed -i -e "s/js\/dojo-release-${DOJOVERSION}-src/js/" "$DISTDIR/index.html"
+# this changes the path to the CSS files in app.css.
+sed -i -e "s/dojo-release-${DOJOVERSION}-src//" "$DISTDIR/css/app.css"
