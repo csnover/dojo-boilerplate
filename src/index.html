@@ -3,22 +3,31 @@
 <head>
     <meta charset="utf-8">
     <title>Dojo Boilerplate</title>
+    <!-- Application-specific CSS should be stored in your application's package to ensure portability and to allow
+         the build system to combine & minify it. -->
     <link rel="stylesheet" href="js/app/resources/app.css">
 </head>
 <body class="claro">
     <!-- dojo.js is an AMD-compliant loader script. It accepts configuration either from a data-dojo-config attribute,
          as shown here, from a global dojoConfig object (which must be defined *before* dojo.js is loaded), or from
          a global require object.
-         Configuration options for the loader can be viewed at http://docs.dojocampus.org/developer/design/bootstrap.
-         Below, we’re enabling the new AMD-compliant loader. This is the only configuration option that *must* be set
-         before dojo.js is loaded; without it, Dojo will use the backwards-compatible synchronous loader.
-         The remainder of Dojo configuration occurs within _base.js. -->
-    <script data-dojo-config="async:1" src="js/dojo/dojo.js" defer></script>
 
-    <!-- This is removed automatically by the Dojo Boilerplate build script in production. -->
-    <script>isDebug = true;</script>
+         Configuration options for the loader can be viewed at http://docs.dojocampus.org/developer/design/bootstrap
+         along with a bunch of additional information about its features.
 
-    <!-- _base.js is our application’s entry point. It is a loader-style build control script. -->
+         Below, we're doing the following:
+
+         1. Enabling the AMD loader. (async: 1)
+         2. Fixing the loader to use proper AMD-style baseUrl resolution of unregistered module paths.
+            (tlmSiblingOfDojo: 0)
+         3. Enabling debugging. (isDebug: 1)
+
+         The remainder of Dojo configuration, as well as our application's instantiation, occurs within
+         js/app/_base.js. -->
+    <script data-dojo-config="async: 1, tlmSiblingOfDojo: 0, isDebug: 1"
+            src="js/dojo/dojo.js" defer></script>
+
+    <!-- Load the application. -->
     <script src="js/app/_base.js" defer></script>
 </body>
 </html>
