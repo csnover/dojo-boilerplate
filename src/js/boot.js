@@ -25,4 +25,5 @@ require({
         { name: 'app', location: 'app' },
         { name: 'dbp', location: 'dbp' }
     ]
+// Require 'app'. This loads the main application file, app/main.js.
 }, [ 'app' ]);

@@ -16,10 +16,11 @@ providing guidance for earlier versions of the AMD branch.
 ## Quick Start
 
 0. Clone the repository using `git clone --recursive`.
-1. Develop your project in `src/` until it is amazing.
-2. Run `util/build.sh`, which will create an awesome optimised build in `dist/`.
-3. Upload `dist/` for millions of people the world over to enjoy.
-4. Hapyness.
+1. Check out the AMD 1.7 branch using `git checkout amd1.7`.
+2. Develop your project in `src/` until it is amazing.
+3. Run `util/build.sh`, which will create an awesome optimised build in `dist/`.
+4. Upload `dist/` for millions of people the world over to enjoy.
+5. Hapyness.
 
 ### Windows Users
 
@@ -36,21 +37,23 @@ much faster builds.
 
 ## A brief tour
 
-* The starting point of the boilerplate is the file at `src/index.html`. This
-  file is responsible for loading the Dojo loader and the application's base
-  JavaScript file.
-* The file `src/js/app/_base.js` is your application's base JavaScript file. In
-  it, you can specify dependencies on other files, including files you create.
-  You can also write application code, though the code you write in this
-  particular file should be limited to bootstrapping functionality.
+* The starting point of the boilerplate is the file at `src/index.html` for
+  the client, and `src/server.sh` for a server running Node.js. These files
+  are responsible for loading the Dojo loader and the application’s
+  bootstrapper script.
+* The file `src/js/boot.js` is your application’s bootstrapper script. In
+  it, you can configure paths, packages, and other configuration options
+  that should apply to both the client and the server. By default, this file
+  simply configures paths and packages and then loads `src/js/app/main.js`
+  (by way of the second `[ 'app' ]` argument).
 * The file `util/build.sh` takes your application files and builds them for
   production use using the Dojo build tool. It depends on the presence of the
-  bootstrapping file at `src/js/app/_base.js`.
-* The file `src/css/app.css` contains import statements to load the CSS for
-  Dojo's Claro theme. _If you are not using Dijit widgets, you probably want to
-  remove these imports!_
+  build profile at `profiles/main.profile.js`.
+* The file `src/js/app/resources/app.css` contains import statements to load
+  the CSS for Dojo’s Claro theme. _If you are not using Dijit widgets, you
+  probably want to remove these imports!_
 * The directory `src/js/dbp` contains tools you may find useful. These tools
-  are a work in progress.
+  are a work in progress, and are not yet updated to AMD syntax.
 
 
 Useful resources
