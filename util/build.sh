@@ -40,10 +40,12 @@ fi
 
 cd "$UTILDIR"
 
+# copy the config.js file
+cp "$SRCDIR/js/boot.js" "$DISTDIR/js/boot.js"
+
 # copy the index.html and make it production-friendly
 cp "$SRCDIR/index.html" "$DISTDIR/index.html"
 
-sed -i -e "s/    <!-- This is removed automatically by the Dojo Boilerplate build script in production. -->//" \
- -e "s/<script>isDebug = true;<\/script>//" "$DISTDIR/index.html"
+sed -i "s/, *isDebug: *1//" "$DISTDIR/index.html"
 
 echo "Build complete"
