@@ -59,9 +59,9 @@ much faster builds.
 Useful resources
 ----------------
 
+* [Dojo Tutorials](http://dojotoolkit.org/documentation/)
 * [Dojo Reference Guide](http://dojotoolkit.org/reference-guide/)
 * [Introduction to Custom Dojo Widgets](http://www.enterprisedojo.com/2010/09/21/introduction-to-custom-dojo-widgets/)
-* [Dojo Campus](http://docs.dojocampus.org/)
 
 License
 -------
