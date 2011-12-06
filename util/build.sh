@@ -38,6 +38,14 @@ else
     exit 1
 fi
 
+# build LESS file
+if which node >/dev/null; then
+    cd "$DISTDIR/js/app/resources"
+    node "$SRCDIR/js/less/bin/lessc" -x app.less > app.css
+    rm app.less
+fi
+
+
 cd "$UTILDIR"
 
 # copy the config.js file
@@ -46,6 +54,12 @@ cp "$SRCDIR/js/boot.js" "$DISTDIR/js/boot.js"
 # copy the index.html and make it production-friendly
 cp "$SRCDIR/index.html" "$DISTDIR/index.html"
 
-sed -i "s/, *isDebug: *1//" "$DISTDIR/index.html"
+# remove development lines in index.html and
+# translate *.less links to *.css
+sed -i "s/, *isDebug: *1//
+/^\s*<!--\s*Inclusion of LESS\..*$/d
+/^\s*<script>var less\s*=\s*.*<\/script>/d
+/^\s*<script src=[\"']js\/less\/dist\/less\(.*\)\.js[\"'][^>]*><\/script>/d
+s/\(<link\).*\(rel=\"stylesheet\)\/less\(\"\).*\(href=\"[^.]*\.\)less\(\">\)/\1 \2\3 \4css\5/" "$DISTDIR/index.html"
 
 echo "Build complete"

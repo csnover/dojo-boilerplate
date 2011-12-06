@@ -10,3 +10,6 @@
 [submodule "src/js/util"]
 	path = src/js/util
 	url = https://github.com/dojo/util.git
+[submodule "src/js/less"]
+	path = src/js/less
+	url = https://github.com/cloudhead/less.js.git

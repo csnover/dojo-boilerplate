@@ -5,9 +5,12 @@
     <title>Dojo Boilerplate</title>
     <!-- Application-specific CSS should be stored in your application's package to ensure portability and to allow
          the build system to combine & minify it. -->
-    <link rel="stylesheet" href="js/app/resources/app.css">
+    <link rel="stylesheet/less" href="js/app/resources/app.less">
 </head>
 <body class="claro">
+    <!-- Inclusion of LESS. The following two lines will be removed in production. -->
+    <script>var less = { env: "development" };</script>
+    <script src="js/less/dist/less-1.1.5.min.js" defer></script>
     <!-- dojo.js is an AMD-compliant loader script. It accepts configuration either from a data-dojo-config attribute,
          as shown here, from a global dojoConfig object (which must be defined *before* dojo.js is loaded), or from
          a global require object.
