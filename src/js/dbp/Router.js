@@ -22,15 +22,17 @@ define(
    *
    * Example usage
    *
-   *    var myRouter = new dbp.Router([
-   *      {
-   *        path : "/foo/:bar",
-   *        handler : function(params) { },
-   *        defaultRoute : true
-   *      }
-   *    ]);
+   *    require(["dbp/Router"], function(Router){
+   *      var myRouter = new Router([
+   *        {
+   *          path : "/foo/:bar",
+   *          handler : function(params) { },
+   *          defaultRoute : true
+   *        }
+   *      ]);
    *
-   *    myRouter.init();
+   *      myRouter.init();
+   *   });
    *
    * This router was heavily inspired by Sammy.js, a full-featured router
    * for jQuery projects. http://sammyjs.org/
