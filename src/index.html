@@ -12,22 +12,23 @@
          as shown here, from a global dojoConfig object (which must be defined *before* dojo.js is loaded), or from
          a global require object.
 
-         Configuration options for the loader can be viewed at http://docs.dojocampus.org/developer/design/bootstrap
+         Configuration options for the loader can be viewed at http://livedocs.dojotoolkit.org/loader/amd
          along with a bunch of additional information about its features.
 
          Below, we're doing the following:
 
          1. Enabling the AMD loader. (async: 1)
-         2. Fixing the loader to use proper AMD-style baseUrl resolution of unregistered module paths.
+         2. Fixing the loader to use normal AMD resolution of unregistered module paths (relative to baseDir)
+            instead of the traditional Dojo resolution method (relative to the parent of baseDir).
             (tlmSiblingOfDojo: 0)
          3. Enabling debugging. (isDebug: 1)
 
          The remainder of Dojo configuration, as well as our application's instantiation, occurs within
-         js/app/_base.js. -->
+         js/app/run.js. -->
     <script data-dojo-config="async: 1, tlmSiblingOfDojo: 0, isDebug: 1"
             src="js/dojo/dojo.js" defer></script>
 
     <!-- Load the application. -->
-    <script src="js/boot.js" defer></script>
+    <script src="js/app/run.js" defer></script>
 </body>
 </html>

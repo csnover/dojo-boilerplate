@@ -11,8 +11,8 @@ dependencies = {
     // Excludes tests, demos, and original template files from being included in the built version.
     mini: true,
 
-    // Uses ShrinkSafe as the JavaScript minifier. This can also be set to "closure" to use Closure Compiler.
-    optimize: 'shrinksafe',
+    // Uses Closure Compiler as the JavaScript minifier. This can also be set to "shrinksafe" to use ShrinkSafe.
+    optimize: 'closure',
 
     // This is the directory within the output directory that built JavaScript will be placed.
     releaseName: 'js',

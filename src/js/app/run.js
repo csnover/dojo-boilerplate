@@ -5,9 +5,6 @@
  *
  * If you aren't planning on running your app on both the client and the server, you could easily move this
  * configuration into index.html (as a dojoConfig object) if it makes your life easier.
- *
- * This file must remain outside of any defined package directory at the current time or it will be transformed by the
- * build system into a legacy module.
  */
 require({
     // The base path for all packages and modules. If you don't provide this, baseUrl defaults to the directory
@@ -16,8 +13,8 @@ require({
 
     // A list of packages to register. Strictly speaking, you do not need to register any packages,
     // but you can't require "app" and get app/main.js if you do not register the "app" package (the loader will look
-    // for a module at app.js instead). Unregistered packages also cannot use the packageMap feature, which might
-    // be important to you if you need to relocate dependencies.
+    // for a module at <baseUrl>/app.js instead). Unregistered packages also cannot use the packageMap feature, which
+    // might be important to you if you need to relocate dependencies.
     packages: [
         { name: 'dojo', location: 'dojo' },
         { name: 'dijit', location: 'dijit' },
