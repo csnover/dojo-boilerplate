@@ -1,5 +1,5 @@
 {
-	"name": "Dojo Boilerplate Example Application",
+	"name": "app",
 	"version": "1.0",
 	"main": "main",
 	"dependencies": {
