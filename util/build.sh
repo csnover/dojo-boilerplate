@@ -10,6 +10,9 @@ BASEDIR=$(cd "$UTILDIR/.." && pwd)
 # Source directory for unbuilt code
 SRCDIR="$BASEDIR/src"
 
+# Base directory for root of build tree
+BASEPATH="$SRCDIR/js"
+
 # Directory containing dojo build utilities
 TOOLSDIR="$SRCDIR/js/util/buildscripts"
 
@@ -37,7 +40,7 @@ echo " Done"
 cd "$TOOLSDIR"
 
 if which node >/dev/null; then
-    node ../../dojo/dojo.js load=build --require "$LOADERCONF" --package "$PACKAGEDIR" --releaseDir "$DISTDIR" "$@"
+    node ../../dojo/dojo.js load=build --require "$LOADERCONF" --package "$PACKAGEDIR" --basePath "$BASEPATH" --releaseDir "$DISTDIR/js" --release "$@"
 elif which java >/dev/null; then
     java -Xms256m -Xmx256m  -cp ../shrinksafe/js.jar:../closureCompiler/compiler.jar:../shrinksafe/shrinksafe.jar org.mozilla.javascript.tools.shell.Main  ../../dojo/dojo.js baseUrl=../../dojo load=build --require "$LOADERCONF" --package "$PACKAGEDIR" --releaseDir "$DISTDIR" "$@"
 else

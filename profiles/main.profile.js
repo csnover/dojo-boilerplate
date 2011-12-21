@@ -2,9 +2,6 @@
  * Build profiles look mostly the same in Dojo 1.7 as they do in previous versions of the toolkit.
  */
 dependencies = {
-    // Builds a new release.
-    action: 'release',
-
     // Strips all comments from CSS files.
     cssOptimize: 'comments',
 
