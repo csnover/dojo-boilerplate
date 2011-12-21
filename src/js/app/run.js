@@ -16,11 +16,11 @@ require({
     // for a module at <baseUrl>/app.js instead). Unregistered packages also cannot use the packageMap feature, which
     // might be important to you if you need to relocate dependencies.
     packages: [
-        { name: 'dojo', location: 'dojo' },
-        { name: 'dijit', location: 'dijit' },
-        { name: 'dojox', location: 'dojox' },
-        { name: 'app', location: 'app' },
-        { name: 'dbp', location: 'dbp' }
+        'dojo',
+        'dijit',
+        'dojox',
+        'app',
+        'dbp'
     ]
 // Require 'app'. This loads the main application file, app/main.js.
 }, [ 'app' ]);
