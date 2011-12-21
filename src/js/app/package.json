@@ -1,0 +1,26 @@
+{
+	"name": "app",
+	"version": "1.0",
+	"main": "main",
+	"dependencies": {
+		"dojo": "current",
+		"dijit": "current",
+		"dojox": "current",
+		"util": "current"
+	},
+	"description": "Dojo Boilerplate is a quick-start application that demonstrates basic usage of the Dojo Toolkit.",
+	"licenses": [
+		{
+			"type": "AFLv2.1",
+			"url": "http://trac.dojotoolkit.org/browser/dojo/trunk/LICENSE#L43"
+		},
+		{
+			"type": "BSD",
+			"url": "http://trac.dojotoolkit.org/browser/dojo/trunk/LICENSE#L13"
+		}
+	],
+	"bugs": "https://github.com/csnover/dojo-boilerplate/issues",
+	"keywords": ["JavaScript", "Dojo", "Boilerplate", "Example", "Howto"],
+	"homepage": "https://github.com/csnover/dojo-boilerplate",
+	"dojoBuild": "app.profile.js"
+}
