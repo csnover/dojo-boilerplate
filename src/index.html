@@ -5,7 +5,7 @@
     <title>Dojo Boilerplate</title>
     <!-- Application-specific CSS should be stored in your application's package to ensure portability and to allow
          the build system to combine & minify it. -->
-    <link rel="stylesheet" href="js/app/resources/app.css">
+    <link rel="stylesheet" href="app/resources/app.css">
 </head>
 <body class="claro">
     <!-- dojo.js is an AMD-compliant loader script. It accepts configuration either from a data-dojo-config attribute,
@@ -26,9 +26,9 @@
          The remainder of Dojo configuration, as well as our application's instantiation, occurs within
          js/app/run.js. -->
     <script data-dojo-config="async: 1, tlmSiblingOfDojo: 0, isDebug: 1"
-            src="js/dojo/dojo.js" defer></script>
+            src="dojo/dojo.js" defer></script>
 
     <!-- Load the application. -->
-    <script src="js/app/run.js" defer></script>
+    <script src="app/run.js" defer></script>
 </body>
 </html>
