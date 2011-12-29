@@ -47,10 +47,10 @@ var profile = {
     // defer loading large sections of code until they are actually required while still allowing multiple modules to
     // be compiled into a single file.
     layers: {
-        // This is our main application layer. This layer will normally contain most or all of your application code.
+        // This is the main application layer. This layer will normally contain most or all of your application code.
         'app/main': { include: [ 'app/main' ] },
 
-        // In the demo application, we conditionally require app/Dialog on the client-side, so we're building a
+        // In the demo application, we conditionally require app/Dialog on the client-side, so we’re building a
         // separate layer containing just that client-side code.
         'app/Dialog': { include: [ 'app/Dialog' ] }
     },
@@ -60,6 +60,18 @@ var profile = {
     // Keep in mind that dead code removal only happens in minifiers that support it! Currently, ShrinkSafe does not
     // support dead code removal; Closure Compiler and UglifyJS do.
     staticHasFeatures: {
+        // The trace & log APIs are used for debugging the loader, so we don’t need them in the build
+        'dojo-trace-api':0,
+        'dojo-log-api':0,
+
+        // This causes normally private loader data to be exposed for debugging, so we don’t need that either
+        'dojo-publish-privates':0,
+
+        // We’re fully async, so get rid of the legacy loader
+        'dojo-sync-loader':0,
+
+        // We aren’t loading tests in production
+        'dojo-test-sniff':0
     },
 
     // Resource tags are functions that provide hints to the compiler about a given file. The first argument is the
