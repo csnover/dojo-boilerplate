@@ -1,4 +1,5 @@
-# Dojo Boilerplate: A Starter Kit for Dojo Development
+Dojo Boilerplate: A Starter Kit for Dojo Development
+====================================================
 
 The Dojo Boilerplate is a set of files to help you rapidly get up and running
 with the Dojo Toolkit. It illustrates some basic best practices when working
@@ -13,7 +14,8 @@ original
 project. Though that repository is no longer maintained, it was instrumental in
 providing guidance for earlier versions of the AMD branch.
 
-## Quick Start
+Quick Start
+-----------
 
 0. Clone the repository using `git clone --recursive`.
 1. Develop your project in `src/` until it is amazing.
@@ -34,7 +36,8 @@ directory and follow the Quick Start instructions above. If Java is missing,
 you will need to install it. Node.js is optional, but will reward you with
 much faster builds.
 
-## A brief tour
+A brief tour
+------------
 
 * The starting point of the boilerplate is the file at `src/index.html` for
   the client, and `src/server.sh` for a server running Node.js. These files
@@ -54,13 +57,24 @@ much faster builds.
 * The directory `src/dbp` contains tools you may find useful. These tools
   are a work in progress, and are not yet updated to AMD syntax.
 
-
 Useful resources
 ----------------
 
 * [Dojo Reference Guide (latest release version)](http://dojotoolkit.org/reference-guide/)
-* [Introduction to Custom Dojo Widgets](http://www.enterprisedojo.com/2010/09/21/introduction-to-custom-dojo-widgets/)
 * [Dojo Reference Guide (Dojo trunk)](http://livedocs.dojotoolkit.org/)
+* [Introduction to Custom Dojo Widgets](http://www.enterprisedojo.com/2010/09/21/introduction-to-custom-dojo-widgets/)
+
+About the boilerplate
+---------------------
+
+This boilerplate is constantly updated to try to reflect the latest and
+greatest features and design patterns for writing Web apps with Dojo, but
+it relies heavily on information and contributions from other users. If
+you have an idea, suggestion, or problem, please [report
+it](https://github.com/csnover/dojo-boilerplate/issues) or create a pull
+request! (Please note that you will need to have signed the [Dojo
+CLA](http://dojofoundation.org/about/cla) before your pull requests are
+accepted, for the good of us all!)
 
 License
 -------

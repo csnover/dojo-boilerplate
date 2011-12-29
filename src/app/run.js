@@ -1,14 +1,15 @@
 /**
- * This file is used to reconfigure parts of the loader at runtime for this application. We've put this extra
+ * This file is used to reconfigure parts of the loader at runtime for this application. We’ve put this extra
  * configuration in a separate file, instead of adding it directly to index.html, because it contains options that
  * can be shared if the application is run on both the client and the server.
  *
- * If you aren't planning on running your app on both the client and the server, you could easily move this
+ * If you aren’t planning on running your app on both the client and the server, you could easily move this
  * configuration into index.html (as a dojoConfig object) if it makes your life easier.
  */
 require({
     // The base path for all packages and modules. If you don't provide this, baseUrl defaults to the directory
-    // that contains dojo.js.
+    // that contains dojo.js. Since all packages are in the root, we just leave it blank. (If you change this, you
+    // will also need to update app.profile.js).
     baseUrl: '',
 
     // A list of packages to register. Strictly speaking, you do not need to register any packages,

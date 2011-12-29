@@ -8,7 +8,7 @@
         "dojox": "current",
         "util": "current"
     },
-    "description": "Dojo Boilerplate Example Application. A quick-start application that demonstrates basic usage of the Dojo Toolkit.",
+    "description": "Dojo Boilerplate Example Application. A quick-start application that demonstrates basic usage of the Dojo Toolkit. This package.json file is a CommonJS Packages/1.0 manifest, with a special “dojoBuild” property to point to the build file for this package. (This is more useful for library packages than the main application package.)",
     "licenses": [
         {
             "type": "AFLv2.1",

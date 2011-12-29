@@ -13,11 +13,13 @@ function copyOnly(mid) {
 
 var profile = {
     // basePath is relative to the directory containing this profile file; in this case, it is being set to the
-    // src/ directory, which is the same place as the baseUrl directory in the loader configuration.
+    // src/ directory, which is the same place as the baseUrl directory in the loader configuration. (If you change
+    // this, you will also need to update run.js).
     basePath: '..',
 
     // This is the directory within the release directory where built packages will be placed. The release directory
-    // itself is defined by util/build.sh.
+    // itself is defined by build.sh. By default, dbp doesn’t use this because root is where packages live, but
+    // if you want to move the packages somewhere else, this is how to do it. (You will also need to update build.sh.)
     // releaseName: '',
 
     // Builds a new release.
@@ -30,7 +32,9 @@ var profile = {
     mini: true,
 
     // Uses Closure Compiler as the JavaScript minifier. This can also be set to "shrinksafe" to use ShrinkSafe.
-    optimize: 'shrinksafe',
+    // Note that you will probably get some “errors” with CC; these are generally safe to ignore, and will be
+    // fixed in a later version of Dojo.
+    optimize: 'closure',
 
     // Strips all calls to console functions within the code.
     stripConsole: 'all',
@@ -39,7 +43,7 @@ var profile = {
     // smaller. We add it back here to avoid that extra HTTP request.
     selectorEngine: 'acme',
 
-    // Builds can be split into multiple different JavaScript files called "layers". This allows applications to
+    // Builds can be split into multiple different JavaScript files called “layers”. This allows applications to
     // defer loading large sections of code until they are actually required while still allowing multiple modules to
     // be compiled into a single file.
     layers: {
@@ -76,7 +80,7 @@ var profile = {
             return !copyOnly(mid) && /\.js$/.test(filename);
         },
 
-        // Files that should not be copied when the "mini" compiler flag is set to true.
+        // Files that should not be copied when the “mini” compiler flag is set to true.
         miniExclude: function (filename, mid) {
             return mid in {
                 'app/profile': 1
