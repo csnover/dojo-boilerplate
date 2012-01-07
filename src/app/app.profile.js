@@ -36,7 +36,8 @@ var profile = {
     // fixed in a later version of Dojo.
     optimize: 'closure',
 
-    // Strips all calls to console functions within the code.
+    // Strips all calls to console functions within the code. You can also set this to "warn" to strip everything
+    // but console.error, and any other truthy value to strip everything but console.warn and console.error.
     stripConsole: 'all',
 
     // The default selector engine is not included by default in a dojo.js build in order to make mobile builds
