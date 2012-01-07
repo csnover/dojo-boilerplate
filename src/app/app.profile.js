@@ -35,6 +35,7 @@ var profile = {
     // Note that you will probably get some “errors” with CC; these are generally safe to ignore, and will be
     // fixed in a later version of Dojo.
     optimize: 'closure',
+    layerOptimize: 'closure',
 
     // Strips all calls to console functions within the code. You can also set this to "warn" to strip everything
     // but console.error, and any other truthy value to strip everything but console.warn and console.error.
