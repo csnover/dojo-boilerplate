@@ -14,11 +14,16 @@ TOOLSDIR="$SRCDIR/util/buildscripts"
 # Destination directory for built code
 DISTDIR="$BASEDIR/dist"
 
+# Module ID of the main application package loader configuration
+LOADERMID="app/run"
+
 # Main application package loader configuration
-LOADERCONF="$SRCDIR/app/run.js"
+LOADERCONF="$SRCDIR/$LOADERMID.js"
 
 # Main application package build configuration
 PROFILE="$SRCDIR/app/app.profile.js"
+
+# Configuration over. Main application start up!
 
 if [ ! -d "$TOOLSDIR" ]; then
     echo "Can't find Dojo build tools -- did you initialise submodules? (git submodule update --init --recursive)"
@@ -44,9 +49,14 @@ fi
 
 cd "$BASEDIR"
 
-# copy index.html and make it production-friendly
-cp "$SRCDIR/index.html" "$DISTDIR/index.html"
-sed -i "s/, *isDebug: *1//" "$DISTDIR/index.html"
-sed -i -e :a -re 's/<!--.*?-->//g;/<!--/N;//ba' "$DISTDIR/index.html"
+LOADERMID=${LOADERMID//\//\\\/}
+
+# Copy & minify index.html to dist
+cat "$SRCDIR/index.html" | tr '\n' ' ' | \
+perl -pe "
+  s/<\!--.*?-->//g;                          # Strip comments
+  s/isDebug: *1/deps:['$LOADERMID']/;        # Remove isDebug, add deps
+  s/<script src=\"$LOADERMID.*?\/script>//;  # Remove script app/run
+  s/\s+/ /g;                                 # Collapse white-space" > "$DISTDIR/index.html"
 
 echo "Build complete"

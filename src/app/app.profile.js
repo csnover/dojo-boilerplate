@@ -35,7 +35,7 @@ var profile = {
 
     // Uses Closure Compiler as the JavaScript minifier. This can also be set to "shrinksafe" to use ShrinkSafe.
     // Note that you will probably get some “errors” with CC; these are generally safe to ignore, and will be
-    // fixed in a later version of Dojo.
+    // fixed in a later version of Dojo. This defaults to "" (no compression) if not provided.
     optimize: 'closure',
 
     // We’re building layers, so we need to set the minifier to use for those, too. This defaults to "shrinksafe" if
@@ -56,8 +56,22 @@ var profile = {
     // defer loading large sections of code until they are actually required while still allowing multiple modules to
     // be compiled into a single file.
     layers: {
-        // This is the main application layer. This layer will normally contain most or all of your application code.
-        'app/run': { include: [ 'app/main', 'app/run' ] },
+        // This is the main loader module. It is a little special because it is treated like an AMD module even though
+        // it is actually just plain JavaScript. There is some extra magic in the build system specifically for this
+        // module ID.
+        'dojo/dojo': {
+            // In addition to the loader (dojo/dojo) and the loader configuration file (app/run), we’re also including
+            // the main application (app/main) and the dojo/domReady module because it is one of the conditional
+            // dependencies in app/main (the other being app/Dialog) but we don’t want to have to make an extra HTTP
+            // request for such a tiny file.
+            include: [ 'dojo/dojo', 'dojo/domReady', 'app/main', 'app/run' ],
+
+            // By default, the build system will try to include dojo/main in the built dojo/dojo layer, which adds a
+            // bunch of stuff we don’t want or need. We want the initial script load to be as small and quick as
+            // possible, so we configure it as a custom, bootable base.
+            boot: true,
+            customBase: true
+        },
 
         // In the demo application, we conditionally require app/Dialog on the client-side, so we’re building a
         // separate layer containing just that client-side code.
