@@ -61,10 +61,10 @@ var profile = {
         // module ID.
         'dojo/dojo': {
             // In addition to the loader (dojo/dojo) and the loader configuration file (app/run), we’re also including
-            // the main application (app/main) and the dojo/domReady module because it is one of the conditional
-            // dependencies in app/main (the other being app/Dialog) but we don’t want to have to make an extra HTTP
-            // request for such a tiny file.
-            include: [ 'dojo/dojo', 'dojo/domReady', 'app/main', 'app/run' ],
+            // the main application (app/main) and the dojo/i18n and dojo/domReady modules because they are one of the
+            // conditional dependencies in app/main (the other being app/Dialog) but we don’t want to have to make
+            // extra HTTP requests for such tiny files.
+            include: [ 'dojo/dojo', 'dojo/i18n', 'dojo/domReady', 'app/main', 'app/run' ],
 
             // By default, the build system will try to include dojo/main in the built dojo/dojo layer, which adds a
             // bunch of stuff we don’t want or need. We want the initial script load to be as small and quick as
@@ -74,7 +74,8 @@ var profile = {
         },
 
         // In the demo application, we conditionally require app/Dialog on the client-side, so we’re building a
-        // separate layer containing just that client-side code.
+        // separate layer containing just that client-side code. (Practically speaking, you’d probably just want
+        // to roll everything into a single layer, but I wanted to make sure to illustrate multi-layer builds.)
         'app/Dialog': { include: [ 'app/Dialog' ] }
     },
 
@@ -92,6 +93,9 @@ var profile = {
 
         // We’re fully async, so get rid of the legacy loader
         'dojo-sync-loader':0,
+        
+        // dojo-xhr-factory relies on dojo-sync-loader
+        'dojo-xhr-factory':0,
 
         // We aren’t loading tests in production
         'dojo-test-sniff':0
