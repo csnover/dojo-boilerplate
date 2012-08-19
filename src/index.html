@@ -12,7 +12,7 @@
          as shown here, from a global dojoConfig object (which must be defined *before* dojo.js is loaded), or from
          a global require object.
 
-         Configuration options for the loader can be viewed at http://livedocs.dojotoolkit.org/loader/amd
+         Configuration options for the loader can be viewed at http://dojotoolkit.org/reference-guide/loader/amd.html
          along with a bunch of additional information about its features.
 
          Below, we’re doing the following:
@@ -24,13 +24,15 @@
          3. Enabling debugging. (isDebug: 1)
 
          The remainder of Dojo configuration, as well as our application’s instantiation, occurs within
-         app/run.js. -->
-    <script data-dojo-config="async: 1, tlmSiblingOfDojo: 0, isDebug: 1"
-            src="dojo/dojo.js" defer></script>
+         app/run.js.
+
+		 NOTE: `build.sh` is responsible for removing the "isDebug" flag when deploying to production. If you modify
+		 this flag at all, you will break the build! -->
+    <script data-dojo-config="async: 1, tlmSiblingOfDojo: 0, isDebug: 1" src="dojo/dojo.js"></script>
 
     <!-- Load the loader configuration script. Note that this module ID is hard-coded in build.sh in order to provide
          an optimised build that loads as few as one script for the entire application. If you change the name or
          location of this module, you will need to update build.sh too. -->
-    <script src="app/run.js" defer></script>
+    <script src="app/run.js"></script>
 </body>
 </html>

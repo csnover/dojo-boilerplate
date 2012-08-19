@@ -3,7 +3,7 @@
  * below; otherwise, you can remove them. When building for release, Dojo will automatically combine all of your
  * @imported CSS files into a single file.
  *
- * It is highly, highly recommended that you develop your CSS using LESS: http://lesscss.org.
+ * It is highly, highly recommended that you develop your CSS using Stylus: http://learnboost.github.com/stylus/.
  */
 
 @import '../../dojo/resources/dojo.css';

@@ -3,10 +3,10 @@ Dojo Boilerplate: A Starter Kit for Dojo Development
 
 The Dojo Boilerplate is a set of files to help you rapidly get up and running
 with the Dojo Toolkit. It illustrates some basic best practices when working
-with Dojo. This is the branch for the new Dojo 1.7 loader and build systems,
-which use AMD modules; there is also a [branch using the old synchronous
-loader](https://github.com/csnover/dojo-boilerplate/tree/1.6), for use
-with Dojo 1.6.
+with Dojo. This is the branch for the new AMD loader and build systems in Dojo
+1.7 and later; there is also a
+[branch using the old synchronous loader](https://github.com/csnover/dojo-boilerplate/tree/1.6),
+for use with Dojo 1.6 and earlier.
 
 Huge thanks go out to [neonstalwart](https://github.com/neonstalwart) for his
 original
@@ -50,19 +50,17 @@ A brief tour
   (by way of the second `[ 'app' ]` argument).
 * The file `build.sh` takes your application files and builds them for
   production use using the Dojo build tool. It depends on the presence of the
-  build profile at `src/app/app.profile.js`.
+  build profile at `profiles/app.profile.js`.
 * The file `src/app/resources/app.css` contains import statements to load
   the CSS for Dojo’s Claro theme. _If you are not using Dijit widgets, you
   probably want to remove these imports!_
-* The directory `src/dbp` contains tools you may find useful. These tools
-  are a work in progress, and are not yet updated to AMD syntax.
 
 Useful resources
 ----------------
 
-* [Dojo Reference Guide (latest release version)](http://dojotoolkit.org/reference-guide/)
-* [Dojo Reference Guide (Dojo trunk)](http://livedocs.dojotoolkit.org/)
-* [Introduction to Custom Dojo Widgets](http://www.enterprisedojo.com/2010/09/21/introduction-to-custom-dojo-widgets/)
+* [Dojo Tutorials](http://dojotoolkit.org/documentation/)
+* [Dojo Reference Guide](http://dojotoolkit.org/reference-guide/)
+* [Dojo API Browser](http://dojotoolkit.org/api/)
 
 About the boilerplate
 ---------------------
