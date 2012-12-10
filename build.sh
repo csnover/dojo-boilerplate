@@ -30,6 +30,11 @@ if [ ! -d "$TOOLSDIR" ]; then
 	exit 1
 fi
 
+if [ ! -d "$DISTDIR" ]; then
+    echo "No 'dist' directory! Please create one and rerun this script."
+    exit 1
+fi
+
 echo "Building application with $PROFILE to $DISTDIR."
 
 echo -n "Cleaning old files..."
