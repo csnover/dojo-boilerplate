@@ -54,6 +54,8 @@ A brief tour
 * The file `src/app/resources/app.css` contains import statements to load
   the CSS for Dojo’s Claro theme. _If you are not using Dijit widgets, you
   probably want to remove these imports!_
+* The `tests` folder contains tests for our app. To run the `Dialog` tests you must
+open a browser and point to this url: `http://localhost/dojo-boilerplate/src/util/doh/runner.html?testModule=tests/app/Dialog&paths=tests,../../tests;app,../app;dojo,.;dijit,../dijit;dojox,../dojox` (your host may be in another address).
 
 Useful resources
 ----------------
