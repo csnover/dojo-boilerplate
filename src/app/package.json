@@ -3,10 +3,10 @@
 	"version": "1.0",
 	"main": "main",
 	"dependencies": {
-		"dojo": "1.8.0",
-		"dijit": "1.8.0",
-		"dojox": "1.8.0",
-		"util": "1.8.0"
+		"dojo": "1.8.3",
+		"dijit": "1.8.3",
+		"dojox": "1.8.3",
+		"util": "1.8.3"
 	},
 	"description": "Dojo Boilerplate Example Application. A quick-start application that demonstrates basic usage of the Dojo Toolkit. This package.json file is a CommonJS Packages/1.0 manifest, with a special `dojoBuild` property to point to the build file for this package.",
 	"licenses": [
