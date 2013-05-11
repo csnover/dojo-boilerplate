@@ -8,11 +8,11 @@ with Dojo. This is the branch for the new AMD loader and build systems in Dojo
 [branch using the old synchronous loader](https://github.com/csnover/dojo-boilerplate/tree/1.6),
 for use with Dojo 1.6 and earlier.
 
-Huge thanks go out to [neonstalwart](https://github.com/neonstalwart) for his
+Huge thanks to Rebecca Murphey for her efforts on the [dojo-boilerplate](https://github.com/rmurphey/dojo-boilerplate) project and to [neonstalwart](https://github.com/neonstalwart) for his
 original
 [dojo-requirejs-template](https://github.com/neonstalwart/dojo-requirejs-template)
 project. Though that repository is no longer maintained, it was instrumental in
-providing guidance for earlier versions of the AMD branch.
+providing guidance for earlier versions of the AMD branch.  
 
 Quick Start
 -----------
