@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Testing app/Dialog</title>
+        <meta charset="utf-8">
+        <style type="text/css">
+            /* Load all your required stylesheets */
+            @import "../../src/dojo/resources/dojo.css";
+            @import "../../src/dijit/themes/claro/claro.css";
+        </style>
+        <script type="text/javascript">
+            var dojoConfig = {
+                isDebug: true,
+                baseUrl: '../../src/',
+                packages: [
+                    {name: 'dojo' , location: 'dojo'},
+                    {name: 'dijit', location: 'dijit'},
+                    {name: 'dojox', location: 'dojox'},
+                    {name: 'doh'  , location: 'util/doh'},
+                    {name: 'app'   , location: 'app'}
+                ]
+            };
+        </script>
+        <script type="text/javascript" src="../../src/dojo/dojo.js"></script>
+        <script type="text/javascript">
+            require([
+                'doh',
+                'app/Dialog',
+                'dojo/domReady!'
+            ], function(doh, Dialog){
+                doh.register([
+                    function HereIsAnotherTestThatRunsOnAnIsolatedHtmlPage (t) {
+                        t.t(true);
+                        t.f(false);
+                        t.is(1, 1);
+                    }
+                ]);
+
+                doh.runOnLoad();
+            });
+        </script>
+    </head>
+<body></body>
+</html>
