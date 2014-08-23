@@ -1,0 +1,32 @@
+/**
+ * It is highly, highly recommended that you develop your CSS using Stylus: http://learnboost.github.com/stylus/.
+ */
+
+/**
+ * If you are developing a project that makes use of Dijit widgets, you will probably want to include the two files
+ * below; otherwise, you can remove them. When building for release, Dojo will automatically combine all of your
+ * @imported CSS files into a single file.
+ */
+@import '../../dojo/resources/dojo.css';
+@import '../../dijit/themes/claro/claro.css';
+
+/**
+ * If you want to use dgrid, you'll also want to include its CSS as well.
+ */
+@import '../../dgrid/css/dgrid.css';
+
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.loading {
+	font-size: 1.5em;
+	text-align: center;
+
+	.loaded & {
+		display: none;
+	}
+}

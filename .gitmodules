@@ -10,3 +10,12 @@
 [submodule "src/util"]
 	path = src/util
 	url = https://github.com/dojo/util.git
+[submodule "src/dgrid"]
+	path = src/dgrid
+	url = https://github.com/SitePen/dgrid.git
+[submodule "src/put-selector"]
+	path = src/put-selector
+	url = https://github.com/kriszyp/put-selector.git
+[submodule "src/xstyle"]
+	path = src/xstyle
+	url = https://github.com/kriszyp/xstyle.git

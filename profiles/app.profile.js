@@ -40,31 +40,37 @@ var profile = {
 	// This defaults to "shrinksafe" if not provided.
 	layerOptimize: 'closure',
 
+	// A list of packages that will be built. The same packages defined in the loader should be defined here in the
+	// build profile.
+	packages: [
+		// Using a string as a package is shorthand for `{ name: 'app', location: 'app' }`
+		'app',
+		'dgrid',
+		'dijit',
+		'dojo',
+		'dojox',
+		'put-selector',
+		'xstyle'
+	],
+
 	// Strips all calls to console functions within the code. You can also set this to "warn" to strip everything
 	// but console.error, and any other truthy value to strip everything but console.warn and console.error.
 	// This defaults to "normal" (strip all but warn and error) if not provided.
 	stripConsole: 'all',
 
 	// The default selector engine is not included by default in a dojo.js build in order to make mobile builds
-	// smaller. We add it back here to avoid that extra HTTP request. There is also a "lite" selector available; if
-	// you use that, you will need to set the `selectorEngine` property in `app/run.js`, too. (The "lite" engine is
-	// only suitable if you are not supporting IE7 and earlier.)
-	selectorEngine: 'acme',
+	// smaller. We add it back here to avoid that extra HTTP request. There is also an "acme" selector available; if
+	// you use that, you will need to set the `selectorEngine` property in index.html, too.
+	selectorEngine: 'lite',
 
-	// Builds can be split into multiple different JavaScript files called "layers". This allows applications to
-	// defer loading large sections of code until they are actually required while still allowing multiple modules to
-	// be compiled into a single file.
+	// Any module in an application can be converted into a "layer" module, which consists of the original module +
+	// additional dependencies built into the same file. Using layers allows applications to reduce the number of HTTP
+	// requests by combining all JavaScript into a single file.
 	layers: {
 		// This is the main loader module. It is a little special because it is treated like an AMD module even though
 		// it is actually just plain JavaScript. There is some extra magic in the build system specifically for this
 		// module ID.
 		'dojo/dojo': {
-			// In addition to the loader `dojo/dojo` and the loader configuration file `app/run`, we are also including
-			// the main application `app/main` and the `dojo/i18n` and `dojo/domReady` modules because, while they are
-			// all conditional dependencies in `app/main`, we do not want to have to make extra HTTP requests for such
-			// tiny files.
-			include: [ 'dojo/i18n', 'dojo/domReady', 'app/main', 'app/run' ],
-
 			// By default, the build system will try to include `dojo/main` in the built `dojo/dojo` layer, which adds
 			// a bunch of stuff we do not want or need. We want the initial script load to be as small and quick to
 			// load as possible, so we configure it as a custom, bootable base.
@@ -72,36 +78,35 @@ var profile = {
 			customBase: true
 		},
 
-		// In the demo application, we conditionally require `app/Dialog` on the client-side, so here we build a
-		// separate layer containing just that client-side code. (Practically speaking, you would probably just want
-		// to roll everything into a single layer, but this helps provide a basic illustration of multi-layer builds.)
-		// Note that when you create a new layer, the module referenced by the layer is always included in the layer
-		// (in this case, `app/Dialog`), so it does not need to be explicitly defined in the `include` array.
-		'app/Dialog': {}
+		// In this demo application, we load `app/main` on the client-side, so here we build a separate layer containing
+		// that code. (Practically speaking, you would probably just want to roll everything into the `dojo/dojo` layer,
+		// but this helps provide a basic illustration of how multi-layer builds work.) Note that when you create a new
+		// layer, the module referenced by the layer is always included in the layer (in this case, `app/main`), so it
+		// does not need to be explicitly defined in the `include` array.
+		'app/main': {}
 	},
 
-	// Providing hints to the build system allows code to be conditionally removed on a more granular level than
-	// simple module dependencies can allow. This is especially useful for creating tiny mobile builds.
-	// Keep in mind that dead code removal only happens in minifiers that support it! Currently, only Closure Compiler
-	// to the Dojo build system with dead code removal.
-	// A documented list of has-flags in use within the toolkit can be found at
+	// Providing hints to the build system allows code to be conditionally removed on a more granular level than simple
+	// module dependencies can allow. This is especially useful for creating tiny mobile builds. Keep in mind that dead
+	// code removal only happens in minifiers that support it! Currently, only Closure Compiler to the Dojo build system
+	// with dead code removal. A documented list of has-flags in use within the toolkit can be found at
 	// <http://dojotoolkit.org/reference-guide/dojo/has.html>.
 	staticHasFeatures: {
 		// The trace & log APIs are used for debugging the loader, so we do not need them in the build.
-		'dojo-trace-api': 0,
-		'dojo-log-api': 0,
+		'dojo-trace-api': false,
+		'dojo-log-api': false,
 
 		// This causes normally private loader data to be exposed for debugging. In a release build, we do not need
 		// that either.
-		'dojo-publish-privates': 0,
+		'dojo-publish-privates': false,
 
 		// This application is pure AMD, so get rid of the legacy loader.
-		'dojo-sync-loader': 0,
+		'dojo-sync-loader': false,
 
 		// `dojo-xhr-factory` relies on `dojo-sync-loader`, which we have removed.
-		'dojo-xhr-factory': 0,
+		'dojo-xhr-factory': false,
 
 		// We are not loading tests in production, so we can get rid of some test sniffing code.
-		'dojo-test-sniff': 0
+		'dojo-test-sniff': false
 	}
 };
