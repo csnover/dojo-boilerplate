@@ -24,13 +24,18 @@ if [ ! -d "$TOOLSDIR" ]; then
 	exit 1
 fi
 
+if [ ! -d node_modules ]; then
+	echo "Can't find Node.js dependencies -- did you install them? (npm install)"
+	exit 1
+fi
+
 echo "Building application with $PROFILE to $DISTDIR."
 
 echo -n "Cleaning old files..."
 rm -rf "$DISTDIR"
 echo " Done"
 
-stylus -c "$SRCDIR/app/resources/app.styl"
+node_modules/.bin/stylus -c "$SRCDIR/app/resources/app.styl"
 "$TOOLSDIR/build.sh" --profile "$PROFILE" --releaseDir "$DISTDIR" $@
 
 cd "$BASEDIR"

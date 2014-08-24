@@ -8,14 +8,15 @@ with Dojo.
 Quick Start
 -----------
 
-0. Make sure you have [Node.js](http://nodejs.org), a
-   [Java runtime](http://www.oracle.com/technetwork/java/index.html), and
-   [Stylus](https://learnboost.github.io/stylus/) globally installed.
+0. Make sure you have [Node.js](http://nodejs.org) and a
+   [Java runtime](http://www.oracle.com/technetwork/java/index.html)
+   installed.
 1. Clone the repository using `git clone --recursive`.
-2. Develop your project in `src/` until it is amazing.
-3. Run `build.sh`, which will create an awesome optimised build in `dist/`.
-4. Upload `dist/` for millions of people the world over to enjoy.
-5. Hapyness.
+2. Run `npm install` to install additional Node.js dependencies.
+3. Develop your project in `src/` until it is amazing.
+4. Run `build.sh`, which will create an awesome optimised build in `dist/`.
+5. Upload `dist/` for millions of people the world over to enjoy.
+6. Hapyness.
 
 ### Windows Users
 
@@ -38,6 +39,9 @@ A brief tour
   presence of an application build profile at `profiles/app.profile.js`.
 * The file `src/app/resources/app.styl` contains all the CSS for the
   application.
+* Tests using [Intern](http://theintern.io) exist in the `tests` directory.
+  They can be run with `tests/run.sh`. The test configuration is at
+  `tests/intern.js` and defaults to using a Sauce Labs tunnel.
 
 Useful resources
 ----------------

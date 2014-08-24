@@ -1,0 +1,17 @@
+{
+	"name": "dojo-boilerplate",
+	"version": "1.10.0",
+	"description": "Dojo Boilerplate. A basic starting point for writing apps with Dojo.",
+	"license": "BSD-3-Clause",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/csnover/dojo-boilerplate.git"
+	},
+	"devDependencies": {
+		"intern": "2.0.3",
+		"stylus": "0.48.1"
+	},
+	"bugs": "https://github.com/csnover/dojo-boilerplate/issues",
+	"keywords": [ "JavaScript", "Dojo", "Boilerplate", "Example", "Howto" ],
+	"homepage": "https://github.com/csnover/dojo-boilerplate"
+}

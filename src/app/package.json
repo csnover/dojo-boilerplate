@@ -1,15 +1,5 @@
 {
 	"name": "app",
 	"version": "1.10.0",
-	"description": "Dojo Boilerplate Example Application. A quick-start application that demonstrates basic usage of the Dojo Toolkit. This package.json file is a CommonJS Packages/1.0 manifest, with a special `dojoBuild` property to point to the build file for this package.",
-	"licenses": [
-		{
-			"type": "BSD",
-			"url": "http://bugs.dojotoolkit.org/browser/dojo/trunk/LICENSE#L13"
-		}
-	],
-	"bugs": "https://github.com/csnover/dojo-boilerplate/issues",
-	"keywords": ["JavaScript", "Dojo", "Boilerplate", "Example", "Howto"],
-	"homepage": "https://github.com/csnover/dojo-boilerplate",
 	"dojoBuild": "package.js"
 }
