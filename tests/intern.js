@@ -48,13 +48,13 @@ define({
 	// The desired AMD loader to use when running unit tests (client.html). Here we are using the Dojo loader that
 	// our app actually uses to ensure that things are as similar as possible between the test environment and the
 	// actual end-user environment
-	useLoader: {
-		'host-browser': '../../src/dojo/dojo.js'
+	loaders: {
+		'host-browser': 'src/dojo/dojo.js'
 	},
 
 	// Configuration options for the module loader; any AMD configuration options supported by the specified AMD loader
 	// can be used here
-	loader: {
+	loaderOptions: {
 		// Packages that should be registered with the loader in each testing environment;
 		// to test a built version of the application, `src` can be changed to `dist`
 		packages: [
